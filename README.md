@@ -95,3 +95,57 @@ A system that monitors server health, network performance, and service uptime wh
    Monitor failed logins, unauthorized access attempts, and firewall events to promptly detect breaches.
 2. **Compliance Checks**  
    Regularly assess system configurations and patching practices to ensure adherence to security best practices.
+
+## Architecture Design
+
+### Overview
+The system architecture is designed to monitor system performance, server health, network connectivity, and more using a combination of a free, open-source monitoring tool and custom automation scripts. This layered approach ensures real-time monitoring, alerting, and automated remediation across simulated infrastructure components.
+
+### Components
+
+#### Monitoring Server
+- **Tool Selection:**  
+  - We will use **Nagios Core** as the central monitoring server. Nagios is free, open-source, and widely supported.
+- **Functionality:**  
+  - Collect and aggregate metrics from various nodes.
+  - Provide a real-time dashboard and configure threshold-based alerts.
+  - Integrate with email/SMS for notifications.
+  
+#### Monitored Nodes
+- **Windows Servers:**  
+  - Deploy Nagios-compatible agents (e.g., NSClient++) on Windows servers to gather performance metrics (CPU, memory, disk I/O) and monitor services (Active Directory, DNS, DHCP, DFS).
+- **Network Devices:**  
+  - Monitor routers, switches, and firewalls using SNMP or other supported protocols to ensure reliable connectivity.
+- **Virtual Machines:**  
+  - Monitor resource utilization (CPU, memory, storage) for VMs hosted on platforms like VMware.
+- **Remote Desktop & User Services:**  
+  - Monitor session performance and connection stability for Remote Desktop Services and user authentication mechanisms.
+
+#### Data Flows
+- **Metric Collection:**  
+  - Agents on each node collect metrics and transmit data to the central Nagios server.
+- **Data Aggregation:**  
+  - The central server processes incoming data, applies predefined thresholds, and identifies anomalies.
+- **Alerting:**  
+  - When metrics exceed thresholds, alerts are generated via email/SMS and logged for further analysis.
+- **Automation:**  
+  - Custom PowerShell scripts are integrated as event handlers to automatically remediate common issues (e.g., restarting services or clearing temporary files).
+
+#### Integration Points
+- **Email/SMS Notifications:**  
+  - Nagios integrates with free SMTP services and SMS gateways to send real-time alerts.
+- **Custom Automation Scripts:**  
+  - PowerShell scripts are triggered by Nagios events to perform automated remediation.
+- **Log Aggregation:**  
+  - Consolidate logs from Windows servers and network devices using tools like Windows Event Forwarding or NXLog for centralized analysis.
+
+### Deployment Overview
+- **Virtualized Environment:**  
+  - Deploy the monitoring system on a Linux virtual machine running Nagios Core.
+  - Simulate the entire infrastructure on a single computer using virtualization software (e.g., VirtualBox or VMware Player) to host multiple virtual machines representing different infrastructure components.
+- **Local Simulation:**  
+  - This setup allows you to demonstrate and test the complete monitoring and automation workflow on your local machine.
+
+### Summary
+This architecture leverages the free, open-source Nagios Core for monitoring combined with custom PowerShell scripts for automation. It is designed to be scalable and modular, making it ideal for showcasing system monitoring, proactive maintenance, and security best practices.
+
