@@ -149,3 +149,21 @@ The system architecture is designed to monitor system performance, server health
 ### Summary
 This architecture leverages the free, open-source Nagios Core for monitoring combined with custom PowerShell scripts for automation. It is designed to be scalable and modular, making it ideal for showcasing system monitoring, proactive maintenance, and security best practices.
 
+## Tools and Technology
+
+### Monitoring Tools and Platforms
+- **Nagios Core:**  
+  A free, open-source monitoring solution that provides real-time alerts and a customizable dashboard to track system performance and availability.
+- **NSClient++:**  
+  A lightweight agent for Windows servers that integrates with Nagios Core to collect critical performance and service metrics.
+- **SNMP (Simple Network Management Protocol):**  
+  Utilized for monitoring network devices such as routers, switches, and firewalls.
+- **Virtualization Software:**  
+  Tools like VirtualBox or VMware Player are used to simulate the infrastructure environment on a local machine, allowing multiple virtual machines to represent various components of the network.
+
+### Automation & Scripting
+- **PowerShell:**  
+  The primary scripting language for automating routine health checks, generating alerts, and executing remediation tasks.
+- **PowerShell Integrated Scripting Environment (ISE) / Visual Studio Code:**  
+  These development environments provide enhanced scripting, testing, and debugging capabilities for creating robust automation scripts.
+
